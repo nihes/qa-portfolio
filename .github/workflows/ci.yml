@@ -1,0 +1,88 @@
+name: QA Portfolio CI
+
+# Runs every suite against the public demo e-shops.
+# Note: jobs depend on live demo sites (saucedemo.com / automationexercise.com),
+# so an occasional red run can be an upstream availability blip rather than a real regression.
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  api-newman:
+    name: API — Newman
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api-postman-newman
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: newman-report
+          path: api-postman-newman/newman/
+          if-no-files-found: ignore
+
+  playwright:
+    name: UI — Playwright
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright/playwright-report/
+          if-no-files-found: ignore
+
+  cypress:
+    name: UI — Cypress
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cypress
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test
+
+  cucumber:
+    name: BDD — Cucumber
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: cucumber-bdd
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cucumber-report
+          path: cucumber-bdd/reports/
+          if-no-files-found: ignore

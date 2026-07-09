@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Playwright
+playwright/test-results/
+playwright/playwright-report/
+playwright/blob-report/
+playwright/.cache/
+
+# Cypress
+cypress/cypress/videos/
+cypress/cypress/screenshots/
+cypress/cypress/downloads/
+
+# Newman / Postman
+api-postman-newman/newman/
+
+# Cucumber
+cucumber-bdd/reports/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

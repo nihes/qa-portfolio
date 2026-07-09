@@ -1,0 +1,13 @@
+{
+  "name": "qa-portfolio-api",
+  "version": "1.0.0",
+  "description": "Newman-driven REST API test suite for the automationexercise.com public demo e-shop API. Demonstrates asserting on a JSON body error code (responseCode) rather than only the HTTP status, since this API always replies HTTP 200.",
+  "private": true,
+  "scripts": {
+    "test": "newman run collections/automationexercise-api.postman_collection.json -e environments/automationexercise.postman_environment.json -r cli,htmlextra --reporter-htmlextra-export newman/report.html"
+  },
+  "devDependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}

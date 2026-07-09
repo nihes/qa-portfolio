@@ -1,0 +1,232 @@
+{
+  "info": {
+    "_postman_id": "8f3c1a2e-4b5d-4e6f-9a1b-2c3d4e5f6a7b",
+    "name": "AutomationExercise API",
+    "description": "REST API test suite for automationexercise.com/api. IMPORTANT quirk covered by these tests: the API always returns HTTP 200, even for logical errors (missing params, invalid user, etc). The real result code is inside the JSON body field 'responseCode', so every test asserts on body.responseCode rather than relying solely on the transport-level HTTP status.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://automationexercise.com/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/productsList"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Transport-level check: the endpoint itself must be reachable (HTTP 200).",
+              "pm.test('HTTP status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var jsonData = pm.response.json();",
+              "",
+              "// Business-level check: automationexercise.com always returns HTTP 200,",
+              "// so the real result lives in body.responseCode. Assert on that explicitly.",
+              "pm.test('Body responseCode is 200', function () {",
+              "    pm.expect(jsonData.responseCode).to.eql(200);",
+              "});",
+              "",
+              "pm.test('Products array is present and non-empty', function () {",
+              "    pm.expect(jsonData.products).to.be.an('array');",
+              "    pm.expect(jsonData.products.length).to.be.greaterThan(0);",
+              "});",
+              "",
+              "pm.test('First product has id, name and price fields', function () {",
+              "    var firstProduct = jsonData.products[0];",
+              "    pm.expect(firstProduct).to.have.property('id');",
+              "    pm.expect(firstProduct).to.have.property('name');",
+              "    pm.expect(firstProduct).to.have.property('price');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search Product",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "search_product",
+              "value": "{{searchTerm}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/searchProduct"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var jsonData = pm.response.json();",
+              "",
+              "// Business-level check via body.responseCode, per the API's HTTP-always-200 quirk.",
+              "pm.test('Body responseCode is 200', function () {",
+              "    pm.expect(jsonData.responseCode).to.eql(200);",
+              "});",
+              "",
+              "pm.test('Search results array is present and non-empty', function () {",
+              "    pm.expect(jsonData.products).to.be.an('array');",
+              "    pm.expect(jsonData.products.length).to.be.greaterThan(0);",
+              "});",
+              "",
+              "// Persist the result count as a collection variable so it can be reused",
+              "// or inspected by later requests / reports in this same collection run.",
+              "pm.collectionVariables.set('lastSearchResultCount', jsonData.products.length);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get All Brands",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/brandsList"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('HTTP status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var jsonData = pm.response.json();",
+              "",
+              "pm.test('Body responseCode is 200', function () {",
+              "    pm.expect(jsonData.responseCode).to.eql(200);",
+              "});",
+              "",
+              "pm.test('Brands array is present and non-empty', function () {",
+              "    pm.expect(jsonData.brands).to.be.an('array');",
+              "    pm.expect(jsonData.brands.length).to.be.greaterThan(0);",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Verify Login - missing params",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": []
+        },
+        "url": "{{baseUrl}}/verifyLogin"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Negative test: no email/password sent at all.",
+              "// The transport layer still replies HTTP 200 for this API,",
+              "// so the failure must be detected via body.responseCode.",
+              "pm.test('HTTP status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var jsonData = pm.response.json();",
+              "",
+              "pm.test('Body responseCode is 400 for missing params', function () {",
+              "    pm.expect(jsonData.responseCode).to.eql(400);",
+              "});",
+              "",
+              "pm.test('Message reports the missing parameters', function () {",
+              "    pm.expect(jsonData.message).to.include('Bad request');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Verify Login - invalid user",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "email",
+              "value": "{{testEmail}}",
+              "type": "text"
+            },
+            {
+              "key": "password",
+              "value": "{{testPassword}}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": "{{baseUrl}}/verifyLogin"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "// Negative test: syntactically valid but non-existent credentials.",
+              "pm.test('HTTP status code is 200', function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "var jsonData = pm.response.json();",
+              "",
+              "pm.test('Body responseCode is 404 for unknown user', function () {",
+              "    pm.expect(jsonData.responseCode).to.eql(404);",
+              "});",
+              "",
+              "pm.test('Message is \"User not found!\"', function () {",
+              "    pm.expect(jsonData.message).to.eql('User not found!');",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
