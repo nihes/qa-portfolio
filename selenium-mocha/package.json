@@ -1,0 +1,14 @@
+{
+  "name": "qa-portfolio-selenium",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Selenium WebDriver v4 + Mocha + Chai end-to-end test suite (headless Chrome) for saucedemo.com",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "selenium-webdriver": "^4.25.0",
+    "mocha": "^10.7.3",
+    "chai": "^4.5.0"
+  }
+}

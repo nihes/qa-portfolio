@@ -4,11 +4,11 @@ package-lock.json
 yarn.lock
 pnpm-lock.yaml
 
-# Playwright
-playwright/test-results/
-playwright/playwright-report/
-playwright/blob-report/
-playwright/.cache/
+# Playwright (UI, mobile emulation, accessibility)
+**/test-results/
+**/playwright-report/
+**/blob-report/
+**/.cache/
 
 # Cypress
 cypress/cypress/videos/
@@ -20,6 +20,14 @@ api-postman-newman/newman/
 
 # Cucumber
 cucumber-bdd/reports/
+
+# Mocha reporters (selenium-mocha, api-mocha, email-testing)
+**/mochawesome-report/
+
+# Appium / WebdriverIO
+appium-mobile/logs/
+appium-mobile/.tmp/
+appium-mobile/allure-results/
 
 # OS / editor
 .DS_Store

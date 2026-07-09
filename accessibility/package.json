@@ -1,0 +1,16 @@
+{
+  "name": "qa-portfolio-accessibility",
+  "version": "1.0.0",
+  "description": "Automated accessibility (a11y) scanning for saucedemo.com using axe-core with Playwright",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "report": "playwright show-report",
+    "install:browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@axe-core/playwright": "^4.10.0",
+    "typescript": "^5.6.0"
+  }
+}

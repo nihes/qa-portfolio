@@ -4,25 +4,55 @@
 
 A hands-on portfolio showing how I test e-commerce applications end to end — from
 structured **manual** artifacts (test plans, test cases, bug reports, exploratory
-charters) to **automated** checks across the tools I use day to day: **Playwright**,
-**Cypress**, **Cucumber (BDD)** and **Newman/Postman** for API testing.
+charters) to **automated** coverage across the full range of tools and layers I
+work with: **Playwright**, **Cypress**, **Selenium**, **Cucumber (BDD)**,
+**Postman/Newman** and **Mocha** for APIs, **mobile** (device emulation + Appium),
+**email** testing, and **accessibility**.
 
-Everything here runs against **public demo e-shops** so anyone can clone and execute it:
+Everything runs against **public demo targets** so anyone can clone and execute it:
 
 - **[SauceDemo](https://www.saucedemo.com/)** — UI flows (login → cart → checkout).
-- **[Automation Exercise](https://automationexercise.com/)** — a real e-commerce **REST API** (products, search, brands, auth).
+- **[Automation Exercise](https://automationexercise.com/)** — e-commerce REST API (Newman).
+- **[DummyJSON](https://dummyjson.com/)** — auth + CRUD REST API (Mocha).
 
 ---
 
 ## What's inside
 
+### Manual QA
+| Folder | Demonstrates | Stack |
+|---|---|---|
+| [`manual-testing/`](./manual-testing/) | Test plan, 27 test cases, bug reports, exploratory charters | Markdown QA docs |
+
+### API testing
 | Folder | Demonstrates | Stack | Target |
 |---|---|---|---|
-| [`manual-testing/`](./manual-testing/) | Test plan, 27 test cases, bug reports, exploratory charters | Markdown QA docs | Generic e-shop |
-| [`playwright/`](./playwright/) | E2E UI automation with the Page Object Model | Playwright + TypeScript | saucedemo.com |
-| [`cypress/`](./cypress/) | E2E UI automation with custom commands | Cypress + TypeScript | saucedemo.com |
-| [`cucumber-bdd/`](./cucumber-bdd/) | Behaviour-Driven testing (Gherkin) driving Playwright | Cucumber.js + Playwright | saucedemo.com |
-| [`api-postman-newman/`](./api-postman-newman/) | REST API tests run headless in CI | Postman collection + Newman | automationexercise.com API |
+| [`api-postman-newman/`](./api-postman-newman/) | Collection-based REST tests, positive + negative | Postman + Newman | automationexercise.com |
+| [`api-mocha/`](./api-mocha/) | Code-based REST tests: JWT auth, pagination, search, full CRUD | Mocha + Chai + axios | dummyjson.com |
+
+### UI end-to-end
+| Folder | Demonstrates | Stack | Target |
+|---|---|---|---|
+| [`playwright/`](./playwright/) | E2E with Page Object Model | Playwright + TypeScript | saucedemo.com |
+| [`cypress/`](./cypress/) | E2E with custom commands | Cypress + TypeScript | saucedemo.com |
+| [`selenium-mocha/`](./selenium-mocha/) | E2E with the classic WebDriver stack | Selenium WebDriver + Mocha + Chai | saucedemo.com |
+
+### BDD
+| Folder | Demonstrates | Stack | Target |
+|---|---|---|---|
+| [`cucumber-bdd/`](./cucumber-bdd/) | Gherkin feature files driving a browser | Cucumber.js + Playwright | saucedemo.com |
+
+### Mobile
+| Folder | Demonstrates | Stack | Target |
+|---|---|---|---|
+| [`mobile-web-playwright/`](./mobile-web-playwright/) | Mobile device emulation (iPhone 13, Pixel 5) — viewport, UA, touch | Playwright devices | saucedemo.com |
+| [`appium-mobile/`](./appium-mobile/) | Real-device / emulator + BrowserStack example *(not in CI)* | Appium + WebdriverIO | saucedemo.com |
+
+### Specialised
+| Folder | Demonstrates | Stack |
+|---|---|---|
+| [`email-testing/`](./email-testing/) | SMTP delivery assertions (Mailpit) + offline HTML-email validation | nodemailer + Mailpit + cheerio + Mocha |
+| [`accessibility/`](./accessibility/) | Automated a11y scans (WCAG 2 A/AA), assert on critical violations | @axe-core/playwright |
 
 ---
 
@@ -31,38 +61,60 @@ Everything here runs against **public demo e-shops** so anyone can clone and exe
 Each folder is a self-contained project with its own `README.md` and `package.json`.
 
 ```bash
-# API tests (Newman)
+# API — Newman (Postman collection)
 cd api-postman-newman && npm install && npm test
 
-# Playwright
+# API — Mocha + axios (dummyjson)
+cd api-mocha && npm install && npm test
+
+# Playwright (UI)
 cd playwright && npm install && npx playwright install chromium && npm test
 
-# Cypress
+# Cypress (UI)
 cd cypress && npm install && npm test
+
+# Selenium + Mocha (UI)   — needs Chrome installed
+cd selenium-mocha && npm install && npm test
 
 # Cucumber (BDD)
 cd cucumber-bdd && npm install && npx playwright install chromium && npm test
+
+# Mobile device emulation
+cd mobile-web-playwright && npm install && npx playwright install chromium webkit && npm test
+
+# Accessibility
+cd accessibility && npm install && npx playwright install chromium && npm test
+
+# Email — offline HTML validation (no services needed)
+cd email-testing && npm install && npm run test:html
+# ...full email suite (needs Mailpit):  docker run -d -p 1025:1025 -p 8025:8025 axllent/mailpit && npm test
 ```
 
-The manual-testing folder needs no tooling — open the Markdown files.
+The `manual-testing/` folder needs no tooling — just open the Markdown files.
+`appium-mobile/` needs an Android emulator or BrowserStack credentials — see its README.
 
 ---
 
 ## Skills demonstrated
 
 - **Manual QA:** test planning, test case design (functional / negative / boundary),
-  exploratory (session-based) testing, clear reproducible bug reporting.
-- **UI automation:** Playwright & Cypress, Page Object Model, custom commands,
-  web-first assertions, no arbitrary waits.
+  session-based exploratory testing, clear reproducible bug reporting.
+- **UI automation:** Playwright, Cypress and Selenium — Page Object Model, custom
+  commands, web-first assertions, explicit waits, no arbitrary sleeps.
+- **API testing:** both collection-based (Postman/Newman) and code-based (Mocha +
+  axios) — auth/JWT, pagination, search, full CRUD, positive + negative cases.
 - **BDD:** Gherkin feature files with a clean step-definition layer.
-- **API testing:** REST assertions with Postman/Newman, positive + negative cases,
-  handling real-world API quirks (logical status inside the response body).
-- **CI:** every suite runs in GitHub Actions — see [`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
+- **Mobile:** device emulation (viewport, UA, touch) plus a real-device/BrowserStack
+  Appium example.
+- **Email QA:** SMTP delivery assertions against a capture server, plus offline
+  HTML-email structure validation (links, alt text, preheader, DOCTYPE).
+- **Accessibility:** automated WCAG scanning with axe-core.
+- **CI:** every runnable suite runs in GitHub Actions — see [`.github/workflows/ci.yml`](./.github/workflows/ci.yml).
 - **E-commerce domain:** cart, checkout, coupons, totals, payment failure, orders,
   product search / filter / sort, account & auth.
 
 > Automation here is delivered pragmatically with **AI-assisted tooling** — the value
-> is reliable, readable coverage of real e-commerce journeys.
+> is reliable, readable coverage of real e-commerce journeys across many stacks.
 
 ---
 

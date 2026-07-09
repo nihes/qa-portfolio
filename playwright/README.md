@@ -9,7 +9,7 @@ pattern.
 - **Playwright Test** (`@playwright/test`) — test runner, assertions, tracing, HTML reporting
 - **TypeScript** — typed page objects and specs
 - **Page Object Model** — one class per page (`LoginPage`, `InventoryPage`, `CartPage`,
-  `CheckoutPage`) encapsulating locators and reusable actions/assertions
+  `CheckoutPage`, `ProductPage`) encapsulating locators and reusable actions/assertions
 
 ## Project structure
 
@@ -21,11 +21,15 @@ playwright/
 │   ├── LoginPage.ts
 │   ├── InventoryPage.ts
 │   ├── CartPage.ts
-│   └── CheckoutPage.ts
+│   ├── CheckoutPage.ts
+│   └── ProductPage.ts
 └── tests/
     ├── login.spec.ts
     ├── checkout.spec.ts
-    └── sorting.spec.ts
+    ├── checkout-validation.spec.ts
+    ├── sorting.spec.ts
+    ├── cart.spec.ts
+    └── product-detail.spec.ts
 ```
 
 ## Test coverage
@@ -35,8 +39,16 @@ playwright/
 - **checkout.spec.ts** — full happy-path purchase: login, add two products to the cart,
   verify cart badge/count, fill in checkout details, verify the order overview and total,
   and confirm the "Thank you for your order!" completion screen.
+- **checkout-validation.spec.ts** — negative checkout step-one coverage: submitting the
+  customer information form with a missing first name, last name, or postal code each
+  surfaces the matching "<Field> is required" error banner and keeps the user on step one.
 - **sorting.spec.ts** — product list sorting by price (low to high) and by name (Z to A),
   verifying the rendered order matches the expected sort.
+- **cart.spec.ts** — adding two items updates the cart badge and the cart page's row
+  count; removing one item from the cart page updates both the row count and the badge.
+- **product-detail.spec.ts** — opening a product from the inventory list shows its name,
+  price and description on the detail page, adding to cart from the detail page updates
+  the badge, and "Back to products" returns to the inventory page.
 
 ## Prerequisites
 

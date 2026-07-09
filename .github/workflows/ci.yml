@@ -1,8 +1,11 @@
 name: QA Portfolio CI
 
-# Runs every suite against the public demo e-shops.
-# Note: jobs depend on live demo sites (saucedemo.com / automationexercise.com),
-# so an occasional red run can be an upstream availability blip rather than a real regression.
+# Runs the automated suites against public demo targets
+# (saucedemo.com, automationexercise.com API, dummyjson.com).
+# Note: jobs depend on live third-party demo services, so an occasional red run
+# can be an upstream availability blip rather than a real regression.
+# appium-mobile/ is intentionally NOT in CI — it needs an Android emulator or
+# BrowserStack credentials (see appium-mobile/README.md).
 
 on:
   push:
@@ -12,7 +15,7 @@ on:
 
 jobs:
   api-newman:
-    name: API — Newman
+    name: API — Newman (Postman)
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -30,6 +33,20 @@ jobs:
           name: newman-report
           path: api-postman-newman/newman/
           if-no-files-found: ignore
+
+  api-mocha:
+    name: API — Mocha + axios
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api-mocha
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test
 
   playwright:
     name: UI — Playwright
@@ -86,3 +103,82 @@ jobs:
           name: cucumber-report
           path: cucumber-bdd/reports/
           if-no-files-found: ignore
+
+  selenium:
+    name: UI — Selenium + Mocha
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: selenium-mocha
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+      - run: npm install
+      - run: npm test
+
+  mobile-web:
+    name: Mobile — Playwright emulation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile-web-playwright
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npx playwright install --with-deps chromium webkit
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mobile-web-report
+          path: mobile-web-playwright/playwright-report/
+          if-no-files-found: ignore
+
+  accessibility:
+    name: Accessibility — axe-core
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: accessibility
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: accessibility-report
+          path: accessibility/playwright-report/
+          if-no-files-found: ignore
+
+  email:
+    name: Email — SMTP (Mailpit) + HTML validation
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: email-testing
+    services:
+      mailpit:
+        image: axllent/mailpit
+        ports:
+          - 1025:1025
+          - 8025:8025
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test

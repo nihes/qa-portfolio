@@ -1,0 +1,19 @@
+{
+  "name": "qa-portfolio-email",
+  "version": "1.0.0",
+  "description": "Email QA suite: offline HTML-email validation (cheerio) + SMTP integration testing against Mailpit",
+  "private": true,
+  "scripts": {
+    "test": "mocha",
+    "test:html": "mocha tests/html-validation.test.js"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.15",
+    "axios": "^1.7.7",
+    "cheerio": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.7.3",
+    "chai": "^4.5.0"
+  }
+}

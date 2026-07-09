@@ -13,6 +13,15 @@ fixed-time waits).
   page, removing an item updates the badge again.
 - **`cypress/e2e/checkout.cy.ts`** — full happy-path purchase flow from login
   through order confirmation.
+- **`cypress/e2e/sorting.cy.ts`** — sorting by price (low to high) orders items
+  ascending, and sorting by name (Z to A) orders items in reverse alphabetical
+  order.
+- **`cypress/e2e/checkout-validation.cy.ts`** — negative checkout step-one
+  coverage: missing first name, last name, or postal code each surfaces the
+  matching "<Field> is required" error banner and keeps the user on step one.
+- **`cypress/e2e/product-detail.cy.ts`** — opening a product from the
+  inventory list, verifying name/price/description on the detail page, and
+  adding to cart from the detail page updates the cart badge.
 
 ## Project structure
 
@@ -22,6 +31,9 @@ cypress/
     login.cy.ts
     cart.cy.ts
     checkout.cy.ts
+    sorting.cy.ts
+    checkout-validation.cy.ts
+    product-detail.cy.ts
   support/
     e2e.ts          # loads custom commands before every spec
     commands.ts      # cy.login(username, password) custom command
