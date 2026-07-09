@@ -26,6 +26,11 @@ class LoginPage {
    */
   async open() {
     await this.driver.get(BASE_URL);
+    // Clear any session cookie left over from a previous test on the same
+    // driver (e.g. a prior successful login), otherwise saucedemo can skip
+    // re-validating the next login and negative cases won't show their error.
+    await this.driver.manage().deleteAllCookies();
+    await this.driver.navigate().refresh();
     await this.driver.wait(until.elementLocated(this.loginButton), 10000);
   }
 

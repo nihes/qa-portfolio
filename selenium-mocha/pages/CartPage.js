@@ -57,7 +57,8 @@ class CartPage {
       until.elementLocated(this.checkoutButton),
       10000
     );
-    await btn.click();
+    await this.driver.executeScript("arguments[0].click();", btn);
+    await this.driver.wait(until.urlContains("/checkout-step-one.html"), 10000);
   }
 }
 

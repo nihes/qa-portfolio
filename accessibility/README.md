@@ -45,10 +45,19 @@ Each test:
 2. Attaches the full JSON violation list to the Playwright HTML report for inspection.
 3. Logs any **serious**-impact violations to the console as informational context (does not fail
    the build — third-party demo sites commonly carry minor/serious nits outside our control).
-4. **Fails the test only if a `critical`-impact violation is found.** This keeps the suite
-   meaningful (it will catch severe regressions like a fully unlabeled form or missing document
-   structure) without being brittle against pre-existing minor issues on a public demo app we
-   don't own or control.
+4. **Fails only on _unexpected_ `critical`-impact violations.** Critical issues that the demo SUT
+   genuinely has are allow-listed (by axe rule id) and reported as `KNOWN/accepted` instead of
+   failing CI — we surface the real defect but don't own the app. Any *new* critical violation
+   still fails the build.
+
+## Known findings (real defects in the demo SUT)
+
+Automated scanning surfaced a genuine accessibility defect on saucedemo.com, kept on the
+known-issues allow-list so it's visible without breaking CI:
+
+| Page | axe rule | Impact | Issue |
+|---|---|---|---|
+| Inventory | `select-name` | critical | The product-sort `<select>` has no accessible name (no `<label>`/`aria-label`), so screen-reader users can't identify it. |
 
 ## Prerequisites
 

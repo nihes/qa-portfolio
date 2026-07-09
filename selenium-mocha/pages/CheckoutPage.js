@@ -51,7 +51,8 @@ class CheckoutPage {
     await postalCodeEl.sendKeys(postalCode);
 
     const continueBtn = await this.driver.findElement(this.continueButton);
-    await continueBtn.click();
+    await this.driver.executeScript("arguments[0].click();", continueBtn);
+    await this.driver.wait(until.urlContains("/checkout-step-two.html"), 10000);
   }
 
   /**
@@ -74,7 +75,8 @@ class CheckoutPage {
       until.elementLocated(this.finishButton),
       10000
     );
-    await finishBtn.click();
+    await this.driver.executeScript("arguments[0].click();", finishBtn);
+    await this.driver.wait(until.urlContains("/checkout-complete.html"), 10000);
   }
 
   /**

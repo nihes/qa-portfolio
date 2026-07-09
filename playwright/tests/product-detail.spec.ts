@@ -35,7 +35,7 @@ test.describe('Product detail', () => {
     await productPage.expectDescriptionVisible();
 
     // 3. Add to cart from the detail page and verify the badge updates
-    await productPage.addToCartBySlug('sauce-labs-backpack');
+    await productPage.addToCart();
     await inventoryPage.expectCartBadgeCount(1);
 
     // 4. "Back to products" returns to the inventory page

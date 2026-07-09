@@ -2,6 +2,15 @@
 
 **Senior QA Engineer · E-commerce · Manual + AI-Assisted Automation**
 
+[![QA Portfolio CI](https://github.com/nihes/qa-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/nihes/qa-portfolio/actions/workflows/ci.yml)
+![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)
+![Cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)
+![Selenium](https://img.shields.io/badge/Selenium-43B02A?logo=selenium&logoColor=white)
+![Cucumber](https://img.shields.io/badge/Cucumber-23D96C?logo=cucumber&logoColor=white)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=white)
+![Mocha](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=white)
+![axe-core](https://img.shields.io/badge/axe--core-a11y-663399)
+
 A hands-on portfolio showing how I test e-commerce applications end to end — from
 structured **manual** artifacts (test plans, test cases, bug reports, exploratory
 charters) to **automated** coverage across the full range of tools and layers I

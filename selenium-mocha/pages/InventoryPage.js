@@ -49,9 +49,18 @@ class InventoryPage {
    * @param {string} slug
    */
   async addToCartBySlug(slug) {
-    const locator = By.css(`[data-test='add-to-cart-${slug}']`);
-    const btn = await this.driver.wait(until.elementLocated(locator), 10000);
-    await btn.click();
+    const btn = await this.driver.wait(
+      until.elementLocated(By.css(`[data-test='add-to-cart-${slug}']`)),
+      10000
+    );
+    // saucedemo's React add/remove buttons don't reliably fire on Selenium's
+    // native click in headless Chrome; a JS click dispatches the handler reliably.
+    await this.driver.executeScript("arguments[0].click();", btn);
+    // Confirm the add registered before returning (button flips to "remove").
+    await this.driver.wait(
+      until.elementLocated(By.css(`[data-test='remove-${slug}']`)),
+      5000
+    );
   }
 
   /**
@@ -60,9 +69,16 @@ class InventoryPage {
    * @param {string} slug
    */
   async removeFromCartBySlug(slug) {
-    const locator = By.css(`[data-test='remove-${slug}']`);
-    const btn = await this.driver.wait(until.elementLocated(locator), 10000);
-    await btn.click();
+    const btn = await this.driver.wait(
+      until.elementLocated(By.css(`[data-test='remove-${slug}']`)),
+      10000
+    );
+    await this.driver.executeScript("arguments[0].click();", btn);
+    // Confirm removal registered (button flips back to "add-to-cart").
+    await this.driver.wait(
+      until.elementLocated(By.css(`[data-test='add-to-cart-${slug}']`)),
+      5000
+    );
   }
 
   /**
@@ -132,7 +148,8 @@ class InventoryPage {
       until.elementLocated(this.cartLink),
       10000
     );
-    await cartEl.click();
+    await this.driver.executeScript("arguments[0].click();", cartEl);
+    await this.driver.wait(until.urlContains("/cart.html"), 10000);
   }
 }
 

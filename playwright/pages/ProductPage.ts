@@ -42,9 +42,10 @@ export class ProductPage {
     expect(text?.trim().length).toBeGreaterThan(0);
   }
 
-  /** Adds the currently displayed product to the cart using its slug, e.g. "sauce-labs-backpack". */
-  async addToCartBySlug(slug: string): Promise<void> {
-    await this.page.locator(`[data-test="add-to-cart-${slug}"]`).click();
+  /** Adds the currently displayed product to the cart. The detail-page button is
+   * a single [data-test="add-to-cart"] (no product slug, unlike the inventory list). */
+  async addToCart(): Promise<void> {
+    await this.page.locator('[data-test="add-to-cart"]').click();
   }
 
   /** Navigates back to the inventory page. */

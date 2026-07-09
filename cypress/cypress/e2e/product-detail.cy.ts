@@ -19,12 +19,14 @@ describe("Product detail", () => {
       "have.text",
       "Sauce Labs Backpack"
     );
-    cy.get(".inventory_details_price").should("match", /^\$\d+\.\d{2}$/);
+    cy.get(".inventory_details_price")
+      .invoke("text")
+      .should("match", /^\$\d+\.\d{2}$/);
     cy.get(".inventory_details_desc")
       .invoke("text")
       .should("have.length.greaterThan", 0);
 
-    cy.get('[data-test="add-to-cart-sauce-labs-backpack"]').click();
+    cy.get('[data-test="add-to-cart"]').click();
     cy.get(".shopping_cart_badge").should("have.text", "1");
 
     cy.get('[data-test="back-to-products"]').click();
