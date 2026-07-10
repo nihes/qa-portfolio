@@ -34,7 +34,12 @@ a different SUT.
 | [`test-cases/account-auth.md`](./test-cases/account-auth.md) | 8 test cases covering registration, login (valid/invalid/locked), logout, and password reset. |
 | [`bug-reports/BUG-001-coupon-not-applied.md`](./bug-reports/BUG-001-coupon-not-applied.md) | Bug report: coupon discount accepted at checkout but not reflected in the order total. |
 | [`bug-reports/BUG-002-cart-quantity-persistence.md`](./bug-reports/BUG-002-cart-quantity-persistence.md) | Bug report: cart item quantity resets unexpectedly after login / session change. |
+| [`bug-reports/BUG-003-search-zero-results-for-valid-term.md`](./bug-reports/BUG-003-search-zero-results-for-valid-term.md) | Bug report: product search returns zero results for a valid singular keyword while the plural form correctly matches. |
+| [`bug-reports/BUG-004-checkout-accepts-invalid-postal-code.md`](./bug-reports/BUG-004-checkout-accepts-invalid-postal-code.md) | Bug report: checkout places an order despite an empty or invalid postal code, unlike every other required address field. |
 | [`exploratory-charters.md`](./exploratory-charters.md) | Session-based exploratory testing charters for checkout, coupons/discounts, cart, and multi-currency/store, plus a session notes template. |
+| [`test-strategy.md`](./test-strategy.md) | Portfolio-wide test strategy: scope, test levels/types mapped to concrete suites (Playwright, Cypress, Selenium, Cucumber, Postman/Newman, Mocha API, mobile, accessibility, email, k6), environments, entry/exit criteria, defect workflow, CI approach. |
+| [`risk-based-testing.md`](./risk-based-testing.md) | Risk register scoring likelihood/impact/priority across payment, coupons, cart/session, pricing, search, auth, accessibility, performance and API-contract risks, and how priority drives test depth. |
+| [`requirements-traceability-matrix.md`](./requirements-traceability-matrix.md) | RTM mapping requirements to manual `TC-*` cases and automated suite coverage, with a Covered/Partial/Gap status per row and a coverage summary. |
 
 ## How to read the test case tables
 
@@ -47,7 +52,10 @@ Every test case document uses the same column layout:
 
 ## Suggested reading order
 
-1. `test-plan-checkout.md` — understand scope and approach.
-2. `test-cases/*.md` — the concrete test cases derived from that plan.
-3. `bug-reports/*.md` — examples of defects that this kind of testing surfaces.
-4. `exploratory-charters.md` — unscripted, risk-based testing that complements the scripted cases above.
+1. `test-strategy.md` — the portfolio-wide policy: test levels/types, tooling, environments, entry/exit criteria, CI approach.
+2. `risk-based-testing.md` — which areas get the deepest testing, and why.
+3. `test-plan-checkout.md` — the feature-level plan for checkout, applying that strategy.
+4. `test-cases/*.md` — the concrete test cases derived from that plan.
+5. `requirements-traceability-matrix.md` — how those test cases (and the automated suites) map back to requirements, and where the coverage gaps are.
+6. `bug-reports/*.md` — examples of defects that this kind of testing surfaces.
+7. `exploratory-charters.md` — unscripted, risk-based testing that complements the scripted cases above.
