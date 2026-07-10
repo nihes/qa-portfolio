@@ -1,4 +1,4 @@
-# performance (k6)
+# Performance — load testing (k6)
 
 A small **load / performance** test written for [k6](https://k6.io) — Grafana's
 open-source load-testing tool — targeting the DummyJSON product-listing API.

@@ -1,4 +1,4 @@
-# QA Portfolio — Appium + WebdriverIO (Mobile)
+# Appium — real-device / emulator mobile (Appium + WebdriverIO)
 
 Mobile smoke test for [saucedemo.com](https://www.saucedemo.com), driven through
 **Appium** (via WebdriverIO's `@wdio/cli`) against real/emulated **Android**

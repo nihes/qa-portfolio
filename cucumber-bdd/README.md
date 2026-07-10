@@ -1,4 +1,4 @@
-# qa-portfolio-cucumber
+# Cucumber — BDD E2E (Cucumber.js + Playwright)
 
 BDD regression suite for [Sauce Demo](https://www.saucedemo.com) using
 [`@cucumber/cucumber`](https://github.com/cucumber/cucumber-js) as the
@@ -98,3 +98,8 @@ This runs `cucumber-js` using the `default` profile defined in
   (`add-to-cart-sauce-labs-backpack`, `remove-sauce-labs-backpack`, ...);
   the step definitions use the same conversion so new products can be added
   to `.feature` files without touching any step definition code.
+
+## Reports
+
+`npm test` writes an HTML report to `reports/cucumber-report.html` — open it in a
+browser after the run finishes.

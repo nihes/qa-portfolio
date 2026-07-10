@@ -1,4 +1,4 @@
-# Test Data Management
+# Test Data — synthetic data factories (@faker-js/faker + Mocha)
 
 Data-driven testing suite built on **Mocha + Chai (v4) + @faker-js/faker**.
 It demonstrates how a QA suite generates its own realistic, disposable test

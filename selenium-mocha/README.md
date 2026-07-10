@@ -1,4 +1,4 @@
-# Selenium + Mocha + Chai — saucedemo.com
+# Selenium — E2E UI automation (Selenium WebDriver + Mocha + Chai)
 
 End-to-end UI test suite built with **Selenium WebDriver v4**, **Mocha** and **Chai**,
 driving headless Chrome against the public demo shop
@@ -89,3 +89,8 @@ additionally generates a self-contained **mochawesome** HTML report.
   click + wait-for-outcome with retry) and `typeInto` (sendKeys with a
   React-aware value-setter fallback), keeping the flow deterministic on CI.
 - Login specs use a **fresh browser per test** for full session isolation.
+
+## Reports
+
+`npm run test:report` generates a mochawesome HTML report at
+`mochawesome-report/mochawesome.html`.

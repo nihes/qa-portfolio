@@ -1,4 +1,4 @@
-# api-graphql
+# GraphQL API — query & schema tests (Mocha + Chai + axios)
 
 **GraphQL** API tests with **Mocha + Chai + axios** against the public
 [Countries GraphQL API](https://countries.trevorblades.com) — a companion to the

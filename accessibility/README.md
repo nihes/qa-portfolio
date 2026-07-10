@@ -1,4 +1,4 @@
-# qa-portfolio-accessibility
+# Accessibility — automated a11y scans (axe-core + Playwright)
 
 Automated accessibility (a11y) scanning for [saucedemo.com](https://www.saucedemo.com), built with
 [Playwright](https://playwright.dev) and [`@axe-core/playwright`](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/playwright).
@@ -92,3 +92,8 @@ npm run report
   failure, one retry, and both `list` and `html` reporters.
 - Scan scope is intentionally limited to `wcag2a` + `wcag2aa` tags rather than the full axe-core
   rule set (e.g. best-practice rules), keeping the suite focused on conformance-relevant checks.
+
+## Reports
+
+After a run, `npm run report` opens `playwright-report/` (the HTML report, including the
+attached axe-core JSON per test; also auto-uploaded as a CI artifact).

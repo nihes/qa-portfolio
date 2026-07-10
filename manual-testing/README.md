@@ -1,4 +1,4 @@
-# Manual Testing Artifacts
+# Manual Testing — QA docs: plans, cases, RTM, risk, ISTQB techniques & metrics
 
 This folder contains manual QA deliverables produced as part of a Senior QA
 Engineer portfolio. The goal is to demonstrate structured, professional

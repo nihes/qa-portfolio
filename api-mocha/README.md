@@ -1,4 +1,4 @@
-# api-mocha
+# API (Mocha) — code-based REST tests (Mocha + Chai + axios + ajv)
 
 Code-based REST API tests with **Mocha + Chai + axios**, run against the public
 [DummyJSON](https://dummyjson.com) API ([docs](https://dummyjson.com/docs)).
@@ -35,3 +35,8 @@ npm install
 npm test              # console reporter
 npm run test:report   # also writes an HTML report to mochawesome-report/
 ```
+
+## Reports
+
+`npm run test:report` generates a mochawesome HTML report at
+`mochawesome-report/mochawesome.html`.

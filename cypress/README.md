@@ -1,4 +1,4 @@
-# QA Portfolio — Cypress (TypeScript) E2E Suite
+# Cypress — E2E UI automation (TypeScript, custom commands)
 
 End-to-end tests for [saucedemo.com](https://www.saucedemo.com), written in
 Cypress with TypeScript. Part of a Senior QA Engineer portfolio demonstrating

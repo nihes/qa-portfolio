@@ -1,4 +1,4 @@
-# Security Testing Suite
+# Security — headers audit + access-control checks (Mocha + Chai + axios)
 
 A small, **CI-safe**, automatable slice of security testing built with **Mocha + Chai + Axios**
 against the public [DummyJSON](https://dummyjson.com) demo API. It exists to show what a QA

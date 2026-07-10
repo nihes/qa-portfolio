@@ -1,4 +1,4 @@
-# Mobile Web (Playwright Device Emulation)
+# Mobile Web — device emulation (Playwright)
 
 Playwright E2E tests for [saucedemo.com](https://www.saucedemo.com), run through
 Playwright's built-in **device emulation** — mobile viewport size, mobile user-agent
@@ -53,3 +53,8 @@ mobile-web-playwright/
 │   └── responsive.spec.ts        # viewport + touch-capability sanity checks
 └── package.json
 ```
+
+## Reports
+
+After a run, `npm run report` opens `playwright-report/` (the HTML report; also
+auto-uploaded as a CI artifact).

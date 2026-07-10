@@ -1,4 +1,4 @@
-# API Test Suite — automationexercise.com (Postman / Newman)
+# Postman / Newman — REST API tests (collection-based)
 
 REST API tests for the public demo e-shop [automationexercise.com](https://automationexercise.com), run
 headlessly with [Newman](https://github.com/postmanlabs/newman), the CLI companion to Postman.

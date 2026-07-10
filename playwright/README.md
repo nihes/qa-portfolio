@@ -1,4 +1,4 @@
-# qa-portfolio-playwright
+# Playwright — E2E UI automation (TypeScript, Page Object Model)
 
 End-to-end UI test suite for [saucedemo.com](https://www.saucedemo.com), built with
 [Playwright](https://playwright.dev) and TypeScript, following the Page Object Model (POM)
@@ -101,3 +101,8 @@ npm run report
   `secret_sauce`.
 - Configuration lives in `playwright.config.ts`: base URL, tracing on first retry,
   screenshots on failure, one retry, and both `list` and `html` reporters.
+
+## Reports
+
+After a run, `npm run report` opens `playwright-report/` (the HTML report; also
+auto-uploaded as a CI artifact).

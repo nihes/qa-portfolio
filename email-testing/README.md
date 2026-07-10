@@ -1,4 +1,4 @@
-# Email Testing
+# Email Testing — SMTP capture (Mailpit) + HTML-email validation
 
 QA suite for transactional HTML email, split into two independent parts:
 

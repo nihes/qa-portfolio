@@ -1,4 +1,4 @@
-# visual-regression (Playwright)
+# Visual Regression — screenshot diffing (Playwright)
 
 A small **visual regression** example using Playwright's built-in
 [`toHaveScreenshot`](https://playwright.dev/docs/test-snapshots) assertion
@@ -46,3 +46,8 @@ npx playwright install chromium
 npm test          # or: npm run update-snapshots on first run / new platform
 npm run report    # open the HTML report (includes visual diffs on failure)
 ```
+
+## Reports
+
+After a run, `npm run report` opens `playwright-report/` (the HTML report, including
+visual diffs on failure). Not uploaded as a CI artifact — this suite runs locally only.
