@@ -4,11 +4,13 @@
   "private": true,
   "description": "Selenium WebDriver v4 + Mocha + Chai end-to-end test suite (headless Chrome) for saucedemo.com",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:report": "mocha --reporter mochawesome"
   },
   "devDependencies": {
     "selenium-webdriver": "^4.25.0",
     "mocha": "^10.7.3",
-    "chai": "^4.5.0"
+    "chai": "^4.5.0",
+    "mochawesome": "^7.1.3"
   }
 }

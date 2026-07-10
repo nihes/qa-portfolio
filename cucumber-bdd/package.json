@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "test": "cucumber-js",
+    "test:smoke": "cucumber-js --tags \"@smoke\"",
+    "test:regression": "cucumber-js --tags \"@regression\"",
     "install:browsers": "playwright install chromium"
   },
   "dependencies": {

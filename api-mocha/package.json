@@ -4,10 +4,12 @@
   "description": "Code-based REST API test suite (Mocha + Chai + axios) against the DummyJSON public demo API. Demonstrates JWT auth, pagination, search, full CRUD, negative cases, and JSON-schema contract validation with ajv.",
   "private": true,
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:report": "mocha --reporter mochawesome"
   },
   "devDependencies": {
     "ajv": "^8.17.1",
+    "mochawesome": "^7.1.3",
     "axios": "^1.7.7",
     "chai": "^4.5.0",
     "mocha": "^10.7.3"

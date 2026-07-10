@@ -11,13 +11,31 @@ bundler and no build step, so `npm test` works straight out of the box.
 ## What's covered
 
 - `features/checkout.feature`
-  - Successful end-to-end checkout of a single product (add to cart → cart
-    page → checkout details → order overview → order confirmation).
-  - A `Scenario Outline` that adds two different products and asserts the
-    shopping cart badge count via an `Examples` table.
+  - `@smoke` Successful end-to-end checkout of a single product (add to cart →
+    cart page → checkout details → order overview → order confirmation).
+  - `@regression` A `Scenario Outline` that adds two different products and
+    asserts the shopping cart badge count via an `Examples` table.
+  - `@regression` Negative case: checkout is blocked with a validation error
+    when the postal code is missing.
 - `features/cart.feature`
-  - Adding an item increments the cart badge.
-  - Removing an item decrements the cart badge.
+  - `@smoke` Adding an item increments the cart badge.
+  - `@regression` Removing an item decrements the cart badge.
+- `features/products.feature`
+  - `@regression` A `Scenario Outline` sorting the product list four ways
+    (price low→high / high→low, name A→Z / Z→A) and asserting the resulting
+    order via an `Examples` data table.
+
+## Selective runs by tag
+
+Scenarios are tagged `@smoke` / `@regression` (plus area tags `@checkout`,
+`@cart`, `@products`) so subsets can be run independently:
+
+```bash
+npm test              # everything
+npm run test:smoke    # only @smoke  (fast confidence check)
+npm run test:regression   # only @regression
+npx cucumber-js --tags "@products"   # any ad-hoc tag expression
+```
 
 ## Project layout
 
@@ -28,11 +46,13 @@ cucumber-bdd/
 ├── features/
 │   ├── checkout.feature
 │   ├── cart.feature
+│   ├── products.feature              # sorting Scenario Outline
 │   ├── support/
 │   │   ├── world.js                  # custom World: this.page / this.context
 │   │   └── hooks.js                  # Before/After browser + context lifecycle
 │   └── step_definitions/
-│       └── checkout.steps.js         # Given/When/Then steps for both features
+│       ├── checkout.steps.js         # checkout/cart Given/When/Then steps
+│       └── products.steps.js         # sorting steps
 └── reports/
     └── cucumber-report.html          # generated after `npm test`
 ```

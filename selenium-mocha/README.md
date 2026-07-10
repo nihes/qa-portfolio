@@ -46,12 +46,14 @@ selenium-mocha/
 
 ```bash
 npm install
-npm test
+npm test              # console reporter
+npm run test:report   # also writes an HTML report to mochawesome-report/
 ```
 
 `npm test` runs `mocha`, which picks up `.mocharc.json` (spec glob
 `tests/**/*.test.js`, 60s timeout per test to allow for headless browser
-startup and network calls to the live demo site).
+startup and network calls to the live demo site). `npm run test:report`
+additionally generates a self-contained **mochawesome** HTML report.
 
 ## What's covered
 
@@ -80,3 +82,10 @@ startup and network calls to the live demo site).
   (`--headless=new`, `--no-sandbox`, `--disable-dev-shm-usage`,
   `--window-size=1280,800`) so every test file gets an identical, CI-friendly
   browser instance.
+- **React-safe interaction helpers** (`helpers/driver.js`): Sauce Demo is a
+  React SPA where, under headless Chrome, native WebDriver `click()` can be a
+  no-op and `sendKeys()` can drop keystrokes right after a navigation. The suite
+  therefore uses `jsClick`/`clickAndWaitForUrl`/`clickAndWaitForElement` (JS
+  click + wait-for-outcome with retry) and `typeInto` (sendKeys with a
+  React-aware value-setter fallback), keeping the flow deterministic on CI.
+- Login specs use a **fresh browser per test** for full session isolation.

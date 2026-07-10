@@ -82,3 +82,29 @@ Then('the cart badge should show {string}', async function (expectedCount) {
   const badge = (await this.page.textContent('.shopping_cart_badge')).trim();
   assert.strictEqual(badge, expectedCount);
 });
+
+// --- Negative checkout-validation steps ---
+
+When(
+  'the shopper fills in first name {string} and last name {string} without a postal code',
+  async function (firstName, lastName) {
+    await this.page.fill('#first-name', firstName);
+    await this.page.fill('#last-name', lastName);
+    // postal code intentionally left blank
+  }
+);
+
+When('the shopper tries to continue to the overview', async function () {
+  // Click continue but do NOT wait for a navigation — a validation error should
+  // keep the shopper on step one.
+  await this.page.click('[data-test="continue"]');
+});
+
+Then('the shopper should see the checkout error {string}', async function (expectedError) {
+  await this.page.waitForSelector('[data-test="error"]');
+  const error = (await this.page.textContent('[data-test="error"]')).trim();
+  assert.ok(
+    error.includes(expectedError),
+    `Expected checkout error to include "${expectedError}", got "${error}"`
+  );
+});

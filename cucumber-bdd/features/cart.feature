@@ -6,10 +6,12 @@ Feature: Shopping cart
   Background:
     Given the shopper is logged in as "standard_user"
 
+  @smoke @cart
   Scenario: Adding an item increments the cart badge
     When the shopper adds "Sauce Labs Backpack" to the cart
     Then the cart badge should show "1"
 
+  @regression @cart
   Scenario: Removing an item decrements the cart badge
     When the shopper adds "Sauce Labs Backpack" to the cart
     And the shopper adds "Sauce Labs Bike Light" to the cart

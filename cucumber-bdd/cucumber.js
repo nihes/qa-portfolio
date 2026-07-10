@@ -20,8 +20,6 @@ module.exports = {
     ],
     formatOptions: {
       snippetInterface: 'async-await'
-    },
-    // Do not prompt to publish results to the public Cucumber Reports service.
-    publishQuiet: true
+    }
   }
 };

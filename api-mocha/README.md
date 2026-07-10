@@ -32,5 +32,6 @@ so tests assert on `response.status` instead of catching HTTP errors) plus a
 
 ```bash
 npm install
-npm test
+npm test              # console reporter
+npm run test:report   # also writes an HTML report to mochawesome-report/
 ```
