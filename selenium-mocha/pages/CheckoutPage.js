@@ -8,6 +8,7 @@
  */
 
 const { By, until } = require("selenium-webdriver");
+const { clickAndWaitForUrl, typeInto } = require("../helpers/driver");
 
 class CheckoutPage {
   /**
@@ -38,21 +39,15 @@ class CheckoutPage {
    * @param {string} postalCode
    */
   async fillCustomerInfo(firstName, lastName, postalCode) {
-    const firstNameEl = await this.driver.wait(
-      until.elementLocated(this.firstNameInput),
-      10000
+    await typeInto(this.driver, this.firstNameInput, firstName);
+    await typeInto(this.driver, this.lastNameInput, lastName);
+    await typeInto(this.driver, this.postalCodeInput, postalCode);
+
+    await clickAndWaitForUrl(
+      this.driver,
+      this.continueButton,
+      "/checkout-step-two.html"
     );
-    await firstNameEl.sendKeys(firstName);
-
-    const lastNameEl = await this.driver.findElement(this.lastNameInput);
-    await lastNameEl.sendKeys(lastName);
-
-    const postalCodeEl = await this.driver.findElement(this.postalCodeInput);
-    await postalCodeEl.sendKeys(postalCode);
-
-    const continueBtn = await this.driver.findElement(this.continueButton);
-    await this.driver.executeScript("arguments[0].click();", continueBtn);
-    await this.driver.wait(until.urlContains("/checkout-step-two.html"), 10000);
   }
 
   /**
@@ -71,12 +66,11 @@ class CheckoutPage {
    * Clicks "Finish" on checkout step two to complete the order.
    */
   async finish() {
-    const finishBtn = await this.driver.wait(
-      until.elementLocated(this.finishButton),
-      10000
+    await clickAndWaitForUrl(
+      this.driver,
+      this.finishButton,
+      "/checkout-complete.html"
     );
-    await this.driver.executeScript("arguments[0].click();", finishBtn);
-    await this.driver.wait(until.urlContains("/checkout-complete.html"), 10000);
   }
 
   /**

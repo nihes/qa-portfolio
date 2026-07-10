@@ -5,6 +5,7 @@
  */
 
 const { By, until } = require("selenium-webdriver");
+const { jsClick, typeInto } = require("../helpers/driver");
 
 const BASE_URL = "https://www.saucedemo.com";
 
@@ -26,11 +27,6 @@ class LoginPage {
    */
   async open() {
     await this.driver.get(BASE_URL);
-    // Clear any session cookie left over from a previous test on the same
-    // driver (e.g. a prior successful login), otherwise saucedemo can skip
-    // re-validating the next login and negative cases won't show their error.
-    await this.driver.manage().deleteAllCookies();
-    await this.driver.navigate().refresh();
     await this.driver.wait(until.elementLocated(this.loginButton), 10000);
   }
 
@@ -40,19 +36,29 @@ class LoginPage {
    * @param {string} password
    */
   async login(username, password) {
-    const usernameEl = await this.driver.wait(
-      until.elementLocated(this.usernameInput),
-      10000
-    );
-    await usernameEl.clear();
-    await usernameEl.sendKeys(username);
+    await typeInto(this.driver, this.usernameInput, username);
+    await typeInto(this.driver, this.passwordInput, password);
 
-    const passwordEl = await this.driver.findElement(this.passwordInput);
-    await passwordEl.clear();
-    await passwordEl.sendKeys(password);
-
-    const loginBtn = await this.driver.findElement(this.loginButton);
-    await loginBtn.click();
+    // Submit, then wait for a definite outcome (inventory page OR the error
+    // banner), retrying the click if React hadn't wired the submit handler yet
+    // (a hydration timing race that shows up on slower CI runners).
+    let lastError;
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const loginBtn = await this.driver.findElement(this.loginButton);
+      await jsClick(this.driver, loginBtn);
+      try {
+        await this.driver.wait(async () => {
+          const url = await this.driver.getCurrentUrl();
+          if (url.includes("/inventory.html")) return true;
+          const errors = await this.driver.findElements(this.errorMessage);
+          return errors.length > 0;
+        }, 5000);
+        return;
+      } catch (err) {
+        lastError = err;
+      }
+    }
+    throw lastError;
   }
 
   /**

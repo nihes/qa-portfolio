@@ -15,20 +15,19 @@ describe("SauceDemo — Login", function () {
   let loginPage;
   let inventoryPage;
 
-  before(async function () {
+  // A fresh browser per test fully isolates session state (no cookie carryover
+  // between the happy-path and locked-out cases).
+  beforeEach(async function () {
     driver = await buildDriver();
     loginPage = new LoginPage(driver);
     inventoryPage = new InventoryPage(driver);
+    await loginPage.open();
   });
 
-  after(async function () {
+  afterEach(async function () {
     if (driver) {
       await driver.quit();
     }
-  });
-
-  beforeEach(async function () {
-    await loginPage.open();
   });
 
   it("logs in successfully with standard_user and shows the Products page", async function () {

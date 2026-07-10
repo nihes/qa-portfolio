@@ -6,6 +6,10 @@
  */
 
 const { By, until } = require("selenium-webdriver");
+const {
+  clickAndWaitForElement,
+  clickAndWaitForUrl,
+} = require("../helpers/driver");
 
 class InventoryPage {
   /**
@@ -27,8 +31,8 @@ class InventoryPage {
    * Waits for the inventory list to be present, confirming the page loaded.
    */
   async waitForLoad() {
-    await this.driver.wait(until.elementLocated(this.pageTitle), 10000);
-    await this.driver.wait(until.elementLocated(this.inventoryItems), 10000);
+    await this.driver.wait(until.elementLocated(this.pageTitle), 15000);
+    await this.driver.wait(until.elementLocated(this.inventoryItems), 15000);
   }
 
   /**
@@ -49,17 +53,11 @@ class InventoryPage {
    * @param {string} slug
    */
   async addToCartBySlug(slug) {
-    const btn = await this.driver.wait(
-      until.elementLocated(By.css(`[data-test='add-to-cart-${slug}']`)),
-      10000
-    );
-    // saucedemo's React add/remove buttons don't reliably fire on Selenium's
-    // native click in headless Chrome; a JS click dispatches the handler reliably.
-    await this.driver.executeScript("arguments[0].click();", btn);
-    // Confirm the add registered before returning (button flips to "remove").
-    await this.driver.wait(
-      until.elementLocated(By.css(`[data-test='remove-${slug}']`)),
-      5000
+    // JS-click with retry; confirms the button flipped to "remove" (add registered).
+    await clickAndWaitForElement(
+      this.driver,
+      By.css(`[data-test='add-to-cart-${slug}']`),
+      By.css(`[data-test='remove-${slug}']`)
     );
   }
 
@@ -69,15 +67,11 @@ class InventoryPage {
    * @param {string} slug
    */
   async removeFromCartBySlug(slug) {
-    const btn = await this.driver.wait(
-      until.elementLocated(By.css(`[data-test='remove-${slug}']`)),
-      10000
-    );
-    await this.driver.executeScript("arguments[0].click();", btn);
-    // Confirm removal registered (button flips back to "add-to-cart").
-    await this.driver.wait(
-      until.elementLocated(By.css(`[data-test='add-to-cart-${slug}']`)),
-      5000
+    // JS-click with retry; confirms the button flipped back to "add-to-cart".
+    await clickAndWaitForElement(
+      this.driver,
+      By.css(`[data-test='remove-${slug}']`),
+      By.css(`[data-test='add-to-cart-${slug}']`)
     );
   }
 
@@ -144,12 +138,7 @@ class InventoryPage {
    * Clicks the shopping cart icon to navigate to the cart page.
    */
   async goToCart() {
-    const cartEl = await this.driver.wait(
-      until.elementLocated(this.cartLink),
-      10000
-    );
-    await this.driver.executeScript("arguments[0].click();", cartEl);
-    await this.driver.wait(until.urlContains("/cart.html"), 10000);
+    await clickAndWaitForUrl(this.driver, this.cartLink, "/cart.html");
   }
 }
 

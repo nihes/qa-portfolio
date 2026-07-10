@@ -6,6 +6,7 @@
  */
 
 const { By, until } = require("selenium-webdriver");
+const { clickAndWaitForUrl } = require("../helpers/driver");
 
 class CartPage {
   /**
@@ -53,12 +54,11 @@ class CartPage {
    * Clicks the "Checkout" button to proceed to step one of checkout.
    */
   async checkout() {
-    const btn = await this.driver.wait(
-      until.elementLocated(this.checkoutButton),
-      10000
+    await clickAndWaitForUrl(
+      this.driver,
+      this.checkoutButton,
+      "/checkout-step-one.html"
     );
-    await this.driver.executeScript("arguments[0].click();", btn);
-    await this.driver.wait(until.urlContains("/checkout-step-one.html"), 10000);
   }
 }
 
