@@ -3,26 +3,48 @@
 **Senior QA Engineer · E-commerce · Manual + AI-Assisted Automation**
 
 [![QA Portfolio CI](https://github.com/nihes/qa-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/nihes/qa-portfolio/actions/workflows/ci.yml)
-![Playwright](https://img.shields.io/badge/Playwright-2EAD33?logo=playwright&logoColor=white)
-![Cypress](https://img.shields.io/badge/Cypress-17202C?logo=cypress&logoColor=white)
-![Selenium](https://img.shields.io/badge/Selenium-43B02A?logo=selenium&logoColor=white)
-![Cucumber](https://img.shields.io/badge/Cucumber-23D96C?logo=cucumber&logoColor=white)
-![Postman](https://img.shields.io/badge/Postman-FF6C37?logo=postman&logoColor=white)
-![Mocha](https://img.shields.io/badge/Mocha-8D6748?logo=mocha&logoColor=white)
-![axe-core](https://img.shields.io/badge/axe--core-a11y-663399)
+![Experience](https://img.shields.io/badge/Experience-4%2B%20years-0f5c63)
+![Remote](https://img.shields.io/badge/Remote-ready-0f5c63)
+![English](https://img.shields.io/badge/English-C2-0f5c63)
+![Test suites](https://img.shields.io/badge/test%20suites-16-1f6feb)
+![CI jobs](https://img.shields.io/badge/CI%20jobs-12-2EAD33)
+![License](https://img.shields.io/badge/license-MIT-informational)
 
-A hands-on portfolio showing how I test e-commerce applications end to end — from
-structured **manual** artifacts (test plans, test cases, bug reports, exploratory
-charters) to **automated** coverage across the full range of tools and layers I
-work with: **Playwright**, **Cypress**, **Selenium**, **Cucumber (BDD)**,
-**Postman/Newman** and **Mocha** for APIs, **mobile** (device emulation + Appium),
-**email** testing, and **accessibility**.
+> **Senior QA Engineer**, **4+ years** testing high-traffic **e-commerce**. In my day job
+> I test a **20+ market, multistore Magento 2** platform (plus Salesforce Commerce);
+> this repo applies that same production rigor to **public demo apps** so anyone can
+> clone, run and verify it. **C2 English**, fully **remote**.
+> **[LinkedIn](https://linkedin.com/in/ivanandrijko)** · **[GitHub](https://github.com/nihes)** · [How it's built →](./docs/architecture.md)
+
+**At a glance:** 16 self-contained test suites · 12-job GitHub Actions pipeline (green) ·
+6+ automation frameworks · manual + API (REST + GraphQL) + UI + BDD + mobile + performance
++ security + accessibility + email · 27 documented test cases · 4 filed bug reports ·
+100% public, credential-free targets.
+
+> 🧭 **New here? Start with** the **[`playwright/`](./playwright/)** suite (E2E with the
+> Page Object Model), the **[`manual-testing/`](./manual-testing/)** docs (test strategy,
+> RTM, risk-based testing, ISTQB techniques), and **[`docs/architecture.md`](./docs/architecture.md)**
+> for the big picture.
+
+---
+
+## What this is
+
+A hands-on QA portfolio covering the full testing stack end to end — from structured
+**manual** artifacts (test plans, cases, bug reports, exploratory charters, RTM, risk
+analysis) to **automated** coverage across **Playwright**, **Cypress**, **Selenium**,
+**Cucumber (BDD)**, **Postman/Newman**, **Mocha** (REST + GraphQL), **mobile**
+(emulation + Appium), **email**, **accessibility**, **performance (k6)** and **security**.
 
 Everything runs against **public demo targets** so anyone can clone and execute it:
 
 - **[SauceDemo](https://www.saucedemo.com/)** — UI flows (login → cart → checkout).
-- **[Automation Exercise](https://automationexercise.com/)** — e-commerce REST API (Newman).
-- **[DummyJSON](https://dummyjson.com/)** — auth + CRUD REST API (Mocha).
+- **[DummyJSON](https://dummyjson.com/)** & **[Automation Exercise](https://automationexercise.com/)** — REST APIs.
+- **[Countries GraphQL](https://countries.trevorblades.com/)** — GraphQL API.
+
+> **On AI:** built pragmatically with AI-assisted tooling to maximise breadth and
+> velocity — but every architectural and coverage decision (what's tested, what runs in
+> CI, and why) is mine.
 
 ---
 
@@ -31,7 +53,7 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 ### Manual QA
 | Folder | Demonstrates | Stack |
 |---|---|---|
-| [`manual-testing/`](./manual-testing/) | Test plan, 27 test cases, bug reports, exploratory charters | Markdown QA docs |
+| [`manual-testing/`](./manual-testing/) | Test plan, 27 test cases, 4 bug reports, exploratory charters, RTM, test strategy, risk-based testing, ISTQB test-design techniques, QA metrics | Markdown QA docs |
 
 ### API testing
 | Folder | Demonstrates | Stack | Target |
@@ -138,13 +160,12 @@ The `manual-testing/` folder needs no tooling — just open the Markdown files.
 - **E-commerce domain:** cart, checkout, coupons, totals, payment failure, orders,
   product search / filter / sort, account & auth.
 
-> Automation here is delivered pragmatically with **AI-assisted tooling** — the value
-> is reliable, readable coverage of real e-commerce journeys across many stacks.
-
 ---
 
-## About
+## About & contact
 
-Ivan Andrijko — Senior QA Engineer (e-commerce, Magento 2 & Salesforce Commerce),
-4+ years, C2 English, fully remote.
-· [LinkedIn](https://linkedin.com/in/ivanandrijko) · [GitHub](https://github.com/nihes)
+**Ivan Andrijko** — Senior QA Engineer · e-commerce (Magento 2 & Salesforce Commerce) ·
+4+ years · C2 English · fully remote.
+[LinkedIn](https://linkedin.com/in/ivanandrijko) · [GitHub](https://github.com/nihes)
+
+Licensed under the [MIT License](./LICENSE).
