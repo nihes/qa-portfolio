@@ -115,7 +115,7 @@ generated HTML report after a run.
 - **One npm project per suite.** Each folder has its own `package.json` and
   its own dependency tree — a suite is never allowed to reach into another
   suite's `node_modules`. This keeps every suite independently runnable and
-  independently versioned, and is what lets CI run all nine automated jobs
+  independently versioned, and is what lets CI run all twelve automated jobs
   in parallel with no shared install step.
 - **Every suite documents itself.** Each folder's `README.md` states what it
   covers, how to run it, and — where relevant — explicitly why it is or
@@ -144,12 +144,13 @@ history reads as a changelog per folder.
 
 CI is defined in [`.github/workflows/ci.yml`](../.github/workflows/ci.yml)
 and runs on every push to `main`/`master`, every pull request, and on manual
-`workflow_dispatch`. It is a GitHub Actions workflow with **nine independent
+`workflow_dispatch`. It is a GitHub Actions workflow with **twelve independent
 jobs**, one per runnable automated suite, each scoped to its own folder via
 `working-directory` so it installs and runs in isolation:
 
-`api-newman` · `api-mocha` · `playwright` · `cypress` · `cucumber` ·
-`selenium` · `mobile-web` · `accessibility` · `email`
+`api-newman` · `api-mocha` · `api-graphql` · `playwright` · `cypress` ·
+`cucumber` · `selenium` · `mobile-web` · `accessibility` · `email` ·
+`security` · `test-data`
 
 Each job: checks out the repo, sets up Node 20, runs `npm install`, provisions
 browser binaries where needed (`npx playwright install --with-deps ...`, or
