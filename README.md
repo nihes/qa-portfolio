@@ -37,7 +37,7 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 | Folder | Demonstrates | Stack | Target |
 |---|---|---|---|
 | [`api-postman-newman/`](./api-postman-newman/) | Collection-based REST tests, positive + negative | Postman + Newman | automationexercise.com |
-| [`api-mocha/`](./api-mocha/) | Code-based REST tests: JWT auth, pagination, search, full CRUD | Mocha + Chai + axios | dummyjson.com |
+| [`api-mocha/`](./api-mocha/) | Code-based REST tests: JWT auth, pagination, search, full CRUD, **JSON-schema contract** validation | Mocha + Chai + axios + ajv | dummyjson.com |
 
 ### UI end-to-end
 | Folder | Demonstrates | Stack | Target |
@@ -62,6 +62,7 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 |---|---|---|
 | [`email-testing/`](./email-testing/) | SMTP delivery assertions (Mailpit) + offline HTML-email validation | nodemailer + Mailpit + cheerio + Mocha |
 | [`accessibility/`](./accessibility/) | Automated a11y scans (WCAG 2 A/AA), assert on critical violations | @axe-core/playwright |
+| [`performance/`](./performance/) | Load test with p95-latency & error-rate thresholds *(run locally — needs the k6 binary)* | k6 |
 
 ---
 

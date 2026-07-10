@@ -1,14 +1,15 @@
 {
   "name": "qa-portfolio-api-mocha",
   "version": "1.0.0",
-  "description": "Code-based REST API test suite (Mocha + Chai + axios) against the restful-booker public demo API. Demonstrates auth, full CRUD lifecycle assertions, and handling a Heroku-hosted API's cold-start behaviour.",
+  "description": "Code-based REST API test suite (Mocha + Chai + axios) against the DummyJSON public demo API. Demonstrates JWT auth, pagination, search, full CRUD, negative cases, and JSON-schema contract validation with ajv.",
   "private": true,
   "scripts": {
     "test": "mocha"
   },
   "devDependencies": {
-    "mocha": "^10.7.3",
+    "ajv": "^8.17.1",
+    "axios": "^1.7.7",
     "chai": "^4.5.0",
-    "axios": "^1.7.7"
+    "mocha": "^10.7.3"
   }
 }

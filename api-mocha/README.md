@@ -17,6 +17,7 @@ diffs in a PR.
 | `tests/health.test.js` | `GET /test` — service-up smoke check |
 | `tests/auth.test.js` | JWT login (`POST /auth/login`), protected profile (`GET /auth/me` with bearer), invalid credentials → 400, missing token blocked |
 | `tests/products-crud.test.js` | Pagination (`GET /products?limit`), search, get-by-id, 404 handling, add (`POST`), full update (`PUT`), partial update (`PATCH`), delete |
+| `tests/schema.test.js` | Contract testing — validates product & login responses against committed JSON Schemas (draft-07) with **ajv** (`schemas/`) |
 
 `helpers/client.js` exports a shared `axios` instance (`validateStatus: () => true`,
 so tests assert on `response.status` instead of catching HTTP errors) plus a
