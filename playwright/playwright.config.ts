@@ -23,5 +23,17 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    // Cross-browser coverage is opt-in. CI runs chromium only to stay fast and
+    // cheap; uncomment these to also run Firefox and WebKit locally (first run
+    // `npx playwright install firefox webkit`). Run a single engine with
+    // `npx playwright test --project=firefox`.
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
   ],
 });

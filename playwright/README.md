@@ -73,6 +73,18 @@ Run in headed mode (visible browser):
 npm run test:headed
 ```
 
+## Cross-browser (opt-in)
+
+CI runs **chromium** only to stay fast. Firefox and WebKit projects are included
+(commented) in `playwright.config.ts` — uncomment them, install the engines, and
+run all three, or target one:
+
+```bash
+npx playwright install firefox webkit
+npm test                        # all enabled projects
+npx playwright test --project=firefox
+```
+
 ## Viewing the HTML report
 
 After a run, open the generated HTML report:

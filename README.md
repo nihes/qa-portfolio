@@ -77,6 +77,7 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 - [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) — conventions and how to run any suite.
 - [`docs/test-automation-patterns.md`](./docs/test-automation-patterns.md) — patterns & principles (POM/Screenplay, waiting strategies, flake control, reporting).
 - [`docs/localization-testing.md`](./docs/localization-testing.md) — i18n/l10n testing for multi-market e-commerce.
+- [`docs/ci-cd.md`](./docs/ci-cd.md) — the CI/CD pipeline, quality gates, and shift-left approach.
 
 ---
 
