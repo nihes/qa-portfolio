@@ -1,0 +1,16 @@
+{
+  "name": "qa-portfolio-visual-regression",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Visual regression example using Playwright's toHaveScreenshot against saucedemo.com. Run locally — screenshot baselines are OS/browser-specific, so this suite is intentionally excluded from CI.",
+  "scripts": {
+    "test": "playwright test",
+    "update-snapshots": "playwright test --update-snapshots",
+    "report": "playwright show-report",
+    "install:browsers": "playwright install chromium"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "typescript": "^5.6.0"
+  }
+}

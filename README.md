@@ -63,6 +63,15 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 | [`email-testing/`](./email-testing/) | SMTP delivery assertions (Mailpit) + offline HTML-email validation | nodemailer + Mailpit + cheerio + Mocha |
 | [`accessibility/`](./accessibility/) | Automated a11y scans (WCAG 2 A/AA), assert on critical violations | @axe-core/playwright |
 | [`performance/`](./performance/) | Load test with p95-latency & error-rate thresholds *(run locally — needs the k6 binary)* | k6 |
+| [`visual-regression/`](./visual-regression/) | Screenshot baseline diffing *(run locally — baselines are OS-specific)* | Playwright `toHaveScreenshot` |
+
+---
+
+## Documentation
+
+- [`docs/architecture.md`](./docs/architecture.md) — how the portfolio is organised, test targets, and the CI pipeline.
+- [`docs/skills-matrix.md`](./docs/skills-matrix.md) — which QA skills & tools each suite demonstrates.
+- [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) — conventions and how to run any suite.
 
 ---
 
