@@ -48,6 +48,18 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 
 ---
 
+## Reports & proof
+
+Real artifacts produced by the suites in this repo — from actual test runs, not mock-ups:
+
+| Playwright HTML report | API tests — mochawesome | App under test — SauceDemo |
+|:---:|:---:|:---:|
+| [![Playwright report](./docs/images/playwright-report.png)](./docs/images/playwright-report.png) | [![API report](./docs/images/api-mocha-report.png)](./docs/images/api-mocha-report.png) | [![SauceDemo](./docs/images/saucedemo-app.png)](./docs/images/saucedemo-app.png) |
+
+Every push is verified by the [GitHub Actions pipeline](https://github.com/nihes/qa-portfolio/actions) (12 jobs, green).
+
+---
+
 ## What's inside
 
 ### Manual QA

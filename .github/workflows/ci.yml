@@ -26,7 +26,16 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npm test
+      # The target is a public third-party demo API that occasionally has brief
+      # outages; retry so a transient upstream blip doesn't fail the pipeline.
+      - name: Run tests (retry on transient upstream failure)
+        run: |
+          for attempt in 1 2 3; do
+            npm test && exit 0
+            echo "::warning::Attempt $attempt failed (likely a transient upstream blip); retrying in 15s"
+            sleep 15
+          done
+          exit 1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -46,7 +55,14 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npm test
+      - name: Run tests (retry on transient upstream failure)
+        run: |
+          for attempt in 1 2 3; do
+            npm test && exit 0
+            echo "::warning::Attempt $attempt failed (likely a transient upstream blip); retrying in 15s"
+            sleep 15
+          done
+          exit 1
 
   playwright:
     name: UI — Playwright
@@ -223,4 +239,11 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npm test
+      - name: Run tests (retry on transient upstream failure)
+        run: |
+          for attempt in 1 2 3; do
+            npm test && exit 0
+            echo "::warning::Attempt $attempt failed (likely a transient upstream blip); retrying in 15s"
+            sleep 15
+          done
+          exit 1
