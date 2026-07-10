@@ -182,3 +182,31 @@ jobs:
           node-version: 20
       - run: npm install
       - run: npm test
+
+  security:
+    name: Security — headers + access control
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: security
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test
+
+  test-data:
+    name: Test data — faker factories
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: test-data
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm test

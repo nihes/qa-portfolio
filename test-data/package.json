@@ -1,0 +1,14 @@
+{
+  "name": "qa-portfolio-test-data",
+  "version": "1.0.0",
+  "description": "Test data management suite (Mocha + Chai + @faker-js/faker). Demonstrates data-driven testing with realistic, PII-safe synthetic e-commerce fixtures (customers, addresses, cards, products, orders) built via reusable factory functions with override support and seedable determinism.",
+  "private": true,
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.0.0",
+    "chai": "^4.5.0",
+    "mocha": "^10.7.3"
+  }
+}

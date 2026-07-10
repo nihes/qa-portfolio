@@ -1,0 +1,14 @@
+{
+  "name": "qa-portfolio-security",
+  "version": "1.0.0",
+  "description": "Lightweight, CI-safe security-testing suite against the DummyJSON demo API - security response headers audit and authentication/access-control checks.",
+  "private": true,
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "axios": "^1.7.7",
+    "chai": "^4.5.0",
+    "mocha": "^10.7.3"
+  }
+}

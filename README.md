@@ -64,6 +64,8 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 | [`accessibility/`](./accessibility/) | Automated a11y scans (WCAG 2 A/AA), assert on critical violations | @axe-core/playwright |
 | [`performance/`](./performance/) | Load test with p95-latency & error-rate thresholds *(run locally — needs the k6 binary)* | k6 |
 | [`visual-regression/`](./visual-regression/) | Screenshot baseline diffing *(run locally — baselines are OS-specific)* | Playwright `toHaveScreenshot` |
+| [`security/`](./security/) | Security-header audit + authentication/access-control checks; OWASP Top 10 reference | Mocha + Chai + axios |
+| [`test-data/`](./test-data/) | Synthetic test-data factories, data-driven generation, deterministic seeding | @faker-js/faker + Mocha |
 
 ---
 

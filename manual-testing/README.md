@@ -40,6 +40,8 @@ a different SUT.
 | [`test-strategy.md`](./test-strategy.md) | Portfolio-wide test strategy: scope, test levels/types mapped to concrete suites (Playwright, Cypress, Selenium, Cucumber, Postman/Newman, Mocha API, mobile, accessibility, email, k6), environments, entry/exit criteria, defect workflow, CI approach. |
 | [`risk-based-testing.md`](./risk-based-testing.md) | Risk register scoring likelihood/impact/priority across payment, coupons, cart/session, pricing, search, auth, accessibility, performance and API-contract risks, and how priority drives test depth. |
 | [`requirements-traceability-matrix.md`](./requirements-traceability-matrix.md) | RTM mapping requirements to manual `TC-*` cases and automated suite coverage, with a Covered/Partial/Gap status per row and a coverage summary. |
+| [`test-design-techniques.md`](./test-design-techniques.md) | ISTQB black-box test-design techniques (equivalence partitioning, boundary value analysis, decision tables, state transition, pairwise, error guessing) with worked e-commerce examples. |
+| [`qa-metrics.md`](./qa-metrics.md) | QA metrics & concepts: severity vs priority, defect lifecycle, and formulas for defect density/leakage/DRE, coverage, pass rate, flakiness and more. |
 
 ## How to read the test case tables
 
