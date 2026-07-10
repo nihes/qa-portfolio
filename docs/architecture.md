@@ -18,6 +18,26 @@ Every suite is scoped small on purpose — a handful of specs each, not a huge
 regression bank — because the point is breadth-with-depth-per-tool and
 professional structure, not sheer test count.
 
+## How it fits together
+
+```mermaid
+flowchart TD
+    subgraph SUITES["16 test suites — one npm project each"]
+      direction LR
+      MAN["Manual QA<br/>plans · cases · RTM · risk · metrics"]
+      UI["UI E2E<br/>Playwright · Cypress · Selenium · Cucumber"]
+      API["API<br/>Newman · Mocha+ajv · GraphQL"]
+      MOB["Mobile<br/>emulation · Appium"]
+      NF["Non-functional<br/>a11y · performance · security · visual · email"]
+      DATA["Test data<br/>faker factories"]
+    end
+    TARGETS["Public demo targets<br/>SauceDemo · DummyJSON · Automation Exercise · Countries GraphQL · Mailpit"]
+    CI["GitHub Actions CI<br/>13 jobs incl. TypeScript typecheck gate"]
+    SUITES --> TARGETS
+    SUITES --> CI
+    CI --> OUT["Green pipeline + uploaded HTML / JSON reports"]
+```
+
 ## Folder layout — one self-contained project per discipline
 
 ```
