@@ -26,7 +26,7 @@ qa-portfolio/
 ├── docs/                        # this folder — architecture, skills matrix,
 │                                 # contributing, automation patterns,
 │                                 # localization testing, CI/CD
-├── .github/workflows/ci.yml     # the 12-job CI pipeline
+├── .github/workflows/ci.yml     # the 13-job CI pipeline
 │
 ├── manual-testing/              # test strategy, plans, cases, RTM, risk register,
 │                                 # exploratory charters, bug reports — no tooling
@@ -88,7 +88,8 @@ choice, not a shortcut:
 CI is **GitHub Actions**, defined in
 [`.github/workflows/ci.yml`](../.github/workflows/ci.yml), triggered on push
 to `main`/`master`, on every pull request, and on manual dispatch. It runs
-**twelve independent jobs**, each scoped to one suite's folder:
+**thirteen independent jobs** — one per runnable suite, plus a TypeScript
+static-analysis gate:
 
 | Job | Suite | Extra setup |
 |---|---|---|
@@ -104,6 +105,7 @@ to `main`/`master`, on every pull request, and on manual dispatch. It runs
 | `email` | `email-testing/` | `axllent/mailpit` GitHub Actions **service container** |
 | `security` | `security/` | — |
 | `test-data` | `test-data/` | — |
+| `typecheck` | all TypeScript suites | `tsc --noEmit` (Cypress binary skipped) |
 
 Report-producing jobs (`api-newman`, `playwright`, `cucumber`, `mobile-web`,
 `accessibility`) upload their HTML/JSON report as a build artifact on every

@@ -51,7 +51,7 @@ SMTP delivery integration testing (Mailpit) · offline HTML-email structural val
 Composable, overridable data-factory design (@faker-js/faker) · isolation via fresh records per test · deterministic seeding for reproducible failures vs. randomised generation for boundary/fuzz coverage · PII-safe synthetic data as a substitute for hand-typed fixtures or scrubbed production exports
 
 **CI / DevOps**
-Multi-job GitHub Actions pipeline across 12 independent suites · per-suite dependency isolation (each folder is its own npm project) · service containers in CI (Mailpit) · browser-binary provisioning in CI (`playwright install --with-deps`) · deliberate, documented exclusion of environment-dependent suites from CI
+Multi-job GitHub Actions pipeline — 12 independent suite jobs plus a TypeScript `tsc --noEmit` static-analysis gate (13 total) · per-suite dependency isolation (each folder is its own npm project) · service containers in CI (Mailpit) · browser-binary provisioning in CI (`playwright install --with-deps`) · retry wrapper so transient third-party API outages don't red the pipeline · deliberate, documented exclusion of environment-dependent suites from CI
 
 **Test design / strategy**
 Mapping test levels (component/integration/system/E2E) and test types to concrete suites · entry/exit criteria definition · defect management workflow · reconciling "CI is green" with "the requirement is verified" via an RTM · picking public, self-contained demo targets so the whole portfolio is reproducible by anyone

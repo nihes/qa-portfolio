@@ -7,7 +7,7 @@
 ![Remote](https://img.shields.io/badge/Remote-ready-0f5c63)
 ![English](https://img.shields.io/badge/English-C2-0f5c63)
 ![Test suites](https://img.shields.io/badge/test%20suites-16-1f6feb)
-![CI jobs](https://img.shields.io/badge/CI%20jobs-12-2EAD33)
+![CI jobs](https://img.shields.io/badge/CI%20jobs-13-2EAD33)
 ![License](https://img.shields.io/badge/license-MIT-informational)
 
 > **Senior QA Engineer**, **4+ years** testing high-traffic **e-commerce**. In my day job
@@ -16,7 +16,7 @@
 > clone, run and verify it. **C2 English**, fully **remote**.
 > **[LinkedIn](https://linkedin.com/in/ivanandrijko)** · **[GitHub](https://github.com/nihes)** · [How it's built →](./docs/architecture.md)
 
-**At a glance:** 16 self-contained test suites · 12-job GitHub Actions pipeline (green) ·
+**At a glance:** 16 self-contained test suites · 13-job GitHub Actions pipeline (green) ·
 6+ automation frameworks · manual + API (REST + GraphQL) + UI + BDD + mobile + performance
 + security + accessibility + email · 27 documented test cases · 4 filed bug reports ·
 100% public, credential-free targets.
@@ -56,7 +56,7 @@ Real artifacts produced by the suites in this repo — from actual test runs, no
 |:---:|:---:|:---:|
 | [![Playwright report](./docs/images/playwright-report.png)](./docs/images/playwright-report.png) | [![API report](./docs/images/api-mocha-report.png)](./docs/images/api-mocha-report.png) | [![SauceDemo](./docs/images/saucedemo-app.png)](./docs/images/saucedemo-app.png) |
 
-Every push is verified by the [GitHub Actions pipeline](https://github.com/nihes/qa-portfolio/actions) (12 jobs, green).
+Every push is verified by the [GitHub Actions pipeline](https://github.com/nihes/qa-portfolio/actions) (13 jobs, green).
 
 ---
 

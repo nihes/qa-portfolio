@@ -247,3 +247,22 @@ jobs:
             sleep 15
           done
           exit 1
+
+  typecheck:
+    name: Static analysis — TypeScript (tsc --noEmit)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Typecheck all TypeScript suites
+        env:
+          # Cypress types are enough for tsc; skip the ~100 MB browser binary.
+          CYPRESS_INSTALL_BINARY: "0"
+        run: |
+          for suite in playwright cypress mobile-web-playwright accessibility visual-regression; do
+            echo "::group::tsc --noEmit — $suite"
+            ( cd "$suite" && npm install --no-audit --no-fund && npx tsc --noEmit ) || exit 1
+            echo "::endgroup::"
+          done

@@ -35,6 +35,7 @@ on `ubuntu-latest` with Node 20.
 | Email — SMTP (Mailpit) + HTML | Email delivery + template validation | Mailpit service |
 | Security — headers + access control | Non-functional, security | dummyjson.com |
 | Test data — faker factories | Supporting / data | (offline) |
+| Static analysis — TypeScript | `tsc --noEmit` typecheck of every TS suite | (offline) |
 
 Browser jobs install only the browser they need (`npx playwright install
 chromium` / `chromium webkit`); the Email job spins up a Mailpit **service
