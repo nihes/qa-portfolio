@@ -38,6 +38,7 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 |---|---|---|---|
 | [`api-postman-newman/`](./api-postman-newman/) | Collection-based REST tests, positive + negative | Postman + Newman | automationexercise.com |
 | [`api-mocha/`](./api-mocha/) | Code-based REST tests: JWT auth, pagination, search, full CRUD, **JSON-schema contract** validation | Mocha + Chai + axios + ajv | dummyjson.com |
+| [`api-graphql/`](./api-graphql/) | GraphQL: queries, variables, null-vs-error handling, schema validation, nested queries | Mocha + Chai + axios | countries.trevorblades.com |
 
 ### UI end-to-end
 | Folder | Demonstrates | Stack | Target |
@@ -74,6 +75,8 @@ Everything runs against **public demo targets** so anyone can clone and execute 
 - [`docs/architecture.md`](./docs/architecture.md) — how the portfolio is organised, test targets, and the CI pipeline.
 - [`docs/skills-matrix.md`](./docs/skills-matrix.md) — which QA skills & tools each suite demonstrates.
 - [`docs/CONTRIBUTING.md`](./docs/CONTRIBUTING.md) — conventions and how to run any suite.
+- [`docs/test-automation-patterns.md`](./docs/test-automation-patterns.md) — patterns & principles (POM/Screenplay, waiting strategies, flake control, reporting).
+- [`docs/localization-testing.md`](./docs/localization-testing.md) — i18n/l10n testing for multi-market e-commerce.
 
 ---
 
